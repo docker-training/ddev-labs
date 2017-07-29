@@ -31,12 +31,11 @@ services:
   ui:
     build:
       context: ui
-      # dockerfile: Dockerfile.dev
+      # dockerfile: Dockerfile.debug
     image: ddev_ui
-    volumes:
-      - ./ui/src:/app/src
     ports:
       - "3000:3000"
+      # - "5858:5858"
     networks:
       - front-tier
 
