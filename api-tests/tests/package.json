@@ -1,0 +1,14 @@
+{
+    "name": "api-tests-java",
+    "version": "1.0.0",
+    "main": "server.js",
+    "scripts": {
+        "test": "jasmine-node *.js",
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "express": "^4.15.2",
+        "jasmine-node": "^1.14.5",
+        "request": "^2.81.0"
+    }
+}
