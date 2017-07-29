@@ -16,7 +16,7 @@ services:
     secrets:
       - postgres_password
 
-  apiserver:
+  api:
     build:
        context: api
        dockerfile: Dockerfile-dev
