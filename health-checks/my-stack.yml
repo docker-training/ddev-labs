@@ -1,0 +1,45 @@
+version: "3.1"
+
+services:
+  database:
+    image: ddev-db:1.0
+    environment:
+      POSTGRES_USER: gordonuser
+      POSTGRES_DB: ddev
+    ports:
+      - "5432:5432" 
+    networks:
+      - back-tier
+    secrets:
+      - postgres_password
+
+  api:
+    image: ddev-api:1.0
+    ports:
+      - "8080:8080"
+      - "5005:5005"
+    networks:
+      - front-tier
+      - back-tier
+    secrets:
+      - postgres_password
+    healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:8080/utility/healthcheck"]
+        interval: 30s
+        timeout: 10s
+        retries: 3
+
+  ui:
+    image: ddev-ui:1.0
+    ports:
+      - "3000:3000"
+    networks:
+      - front-tier
+
+secrets:
+  postgres_password:
+    external: true
+    
+networks:
+  front-tier:
+  back-tier:
