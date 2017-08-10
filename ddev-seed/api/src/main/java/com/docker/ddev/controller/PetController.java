@@ -31,7 +31,7 @@ public class PetController {
 	@RequestMapping(value = "/pet", method = RequestMethod.GET)
 	public ResponseEntity<?> getPet() {
 		logger.info("Fetching random Pet");
-        int max = (int)imageService.count();
+        int max = imageService.count().intValue();
         long imageId = ThreadLocalRandom.current().nextInt(1, max+1);
 		logger.info("Equals to fetching Image with Id {}", imageId);
 		Image image = imageService.findById(imageId);
