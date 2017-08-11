@@ -7,4 +7,4 @@ import com.docker.ddev.model.Image;
 public interface ImageService {
 	List<Image> findAllImages();
 	Image findById(Long productId);
-}
+}	Long count();

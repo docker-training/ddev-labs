@@ -22,4 +22,8 @@ public class ImageServiceImpl implements ImageService {
 	public Image findById(Long imageId) {
 		return imageRepository.findOne(imageId);
 	}
+
+	public Long count(){
+		return imageRepository.count();
+	}
 }
