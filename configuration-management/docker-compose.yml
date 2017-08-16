@@ -13,8 +13,6 @@ services:
       - "5432:5432" 
     networks:
       - back-tier
-    secrets:
-      - postgres_password
 
   api:
     build:
@@ -26,8 +24,6 @@ services:
     networks:
       - front-tier
       - back-tier
-    secrets:
-      - postgres_password
 
   ui:
     build:
@@ -37,10 +33,6 @@ services:
       - "3000:3000"
     networks:
       - front-tier
-
-secrets:
-  postgres_password:
-    file: ./devsecrets/postgres_password
     
 networks:
   front-tier:
