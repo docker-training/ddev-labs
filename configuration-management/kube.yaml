@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ddev
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: dev-config
+    namespace: ddev
+data:
+    APP_ENVIRONMENT: DEV
+    APP_IMAGES_DIRECTORY: "/some/folder/for/dev/images"
+    APP_PDF_DIRECTORY: "/some/folder/for/dev/pdf"
+    APP_MIN_STOCK_COUNT: "2"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+    name: config-test-pod
+    namespace: ddev
+spec:
+    containers:
+      - name: test-container
+        image: busybox
+        command: [ "/bin/sh", "-c", "env" ]
+        envFrom:
+        - configMapRef:
+            name: dev-config
+    restartPolicy: Never
