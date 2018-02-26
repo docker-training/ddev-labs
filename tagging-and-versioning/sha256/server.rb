@@ -20,7 +20,7 @@ class Book
 end
 
 get '/' do  
-    'Welcome to BookList!'
+    'Welcome to our BookList!'
 end
 
 namespace '/api/v1' do
