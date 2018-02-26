@@ -1,0 +1,138 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ddev
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: db-secret
+  namespace: ddev
+type: Opaque
+data:
+  postgres_username: Z29yZG9udXNlcg==    # gordonuser
+  postgres_password: Z29yZG9ucGFzcw==    # gordonpass
+---
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: database
+  namespace: ddev
+  labels:
+    app: database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+      - name: db
+        image: gnschenker/ddev_db:1.0
+        env:
+        - name: POSTGRES_USER
+          value: gordonuser
+        - name: POSTGRES_DB
+          value: ddev
+        ports:
+        - containerPort: 5432
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: database
+  namespace: ddev
+spec:
+  selector:
+    app: db
+  ports:
+  - protocol: TCP
+    port: 5432
+    targetPort: 5432
+---
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: api
+  namespace: ddev
+  labels:
+    app: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      - name: api
+        image: gnschenker/ddev_api:1.0
+        ports:
+        - containerPort: 8080
+        - containerPort: 5005
+          name: debug-port
+        volumeMounts:
+        - name: db-secret-volume
+          mountPath: "/run/secrets"
+          readOnly: true
+      volumes:
+      - name: db-secret-volume
+        secret:
+          secretName: db-secret
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: api
+  namespace: ddev
+spec:
+  selector:
+    app: api
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+---
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: ui
+  namespace: ddev
+  labels:
+    app: ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ui
+  template:
+    metadata:
+      labels:
+        app: ui
+    spec:
+      containers:
+      - name: ui
+        image: gnschenker/ddev_ui:1.0
+        ports:
+        - containerPort: 3000
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: ui
+  namespace: ddev
+spec:
+  selector:
+    app: ui
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 3000
+  type: NodePort
