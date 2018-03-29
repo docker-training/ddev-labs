@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: db
-        image: gnschenker/ddev_db:1.0
+        image: user/ddev_db:1.0
         env:
         - name: POSTGRES_USER
           value: gordonuser
@@ -73,7 +73,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: gnschenker/ddev_api:1.0
+        image: user/ddev_api:1.0
         ports:
         - containerPort: 8080
         - containerPort: 5005
@@ -119,7 +119,7 @@ spec:
     spec:
       containers:
       - name: ui
-        image: gnschenker/ddev_ui:1.0
+        image: user/ddev_ui:1.0
         ports:
         - containerPort: 3000
 ---
