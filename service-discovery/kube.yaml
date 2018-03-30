@@ -58,7 +58,7 @@ spec:
     spec:
       containers:
       - name: ui
-        image: gnschenker/ddev-service-discovery-kube:1.0
+        image: training/ddev-service-discovery-kube:1.0
         ports:
         - containerPort: 3000
 ---
