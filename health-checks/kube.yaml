@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: db
-        image: gnschenker/ddev_db:1.0
+        image: training/ddev_db:1.0
         env:
         - name: POSTGRES_USER
           value: gordonuser
@@ -73,7 +73,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: gnschenker/ddev_api:1.0
+        image: training/ddev_api:1.0
         livenessProbe:
           exec:
             command:
@@ -127,7 +127,7 @@ spec:
     spec:
       containers:
       - name: ui
-        image: gnschenker/ddev_ui:1.0
+        image: training/ddev_ui:1.0
         ports:
         - containerPort: 3000
 ---
