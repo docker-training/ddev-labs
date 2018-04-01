@@ -12,6 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController{
     @RequestMapping(value = "/factorial/{number}", method = RequestMethod.GET)
     public ResponseEntity<String> getFactorial(@PathVariable("number") long number) {
-        return new ResponseEntity<String>("OK", HttpStatus.OK);
+        Long fac = calcFactorial(number);
+        return new ResponseEntity<String>(Long.toString(fac), HttpStatus.OK);
+    }
+
+    private Long calcFactorial(long number){
+        if(number == 1) return number;
+        return number * calcFactorial(number-1);
     }
 }
