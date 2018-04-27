@@ -12,16 +12,16 @@ ALTER TABLE images
 ALTER ROLE gordonuser CONNECTION LIMIT -1;
 
 -- add image data
-INSERT INTO images (description, url) VALUES('cat image', 'http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr05/15/9/anigif_enhanced-buzz-26388-1381844103-11.gif');
-INSERT INTO images (description, url) VALUES('cat image', 'http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr01/15/9/anigif_enhanced-buzz-31540-1381844535-8.gif');
-INSERT INTO images (description, url) VALUES('cat image', 'http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr05/15/9/anigif_enhanced-buzz-26390-1381844163-18.gif');
-INSERT INTO images (description, url) VALUES('cat image', 'http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr06/15/10/anigif_enhanced-buzz-1376-1381846217-0.gif');
-INSERT INTO images (description, url) VALUES('cat image', 'http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr03/15/9/anigif_enhanced-buzz-3391-1381844336-26.gif');
-INSERT INTO images (description, url) VALUES('cat image', 'http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr06/15/10/anigif_enhanced-buzz-29111-1381845968-0.gif');
-INSERT INTO images (description, url) VALUES('cat image', 'http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr03/15/9/anigif_enhanced-buzz-3409-1381844582-13.gif');
-INSERT INTO images (description, url) VALUES('cat image', 'http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr02/15/9/anigif_enhanced-buzz-19667-1381844937-10.gif');
-INSERT INTO images (description, url) VALUES('cat image', 'http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr05/15/9/anigif_enhanced-buzz-26358-1381845043-13.gif');
-INSERT INTO images (description, url) VALUES('cat image', 'http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr06/15/9/anigif_enhanced-buzz-18774-1381844645-6.gif');
-INSERT INTO images (description, url) VALUES('cat image', 'http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr06/15/9/anigif_enhanced-buzz-25158-1381844793-0.gif');
-INSERT INTO images (description, url) VALUES('cat image', 'http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr03/15/10/anigif_enhanced-buzz-11980-1381846269-1.gif');
+INSERT INTO images (description, url) VALUES('cat image', 'https://raw.githubusercontent.com/docker-training/catpics/master/16461916800_e138484673_z.jpg');
+INSERT INTO images (description, url) VALUES('cat image', 'https://raw.githubusercontent.com/docker-training/catpics/master/18223540618_f9aab7c279_z.jpg');
+INSERT INTO images (description, url) VALUES('cat image', 'https://raw.githubusercontent.com/docker-training/catpics/master/23215477792_8c3f868e42_z.jpg');
+INSERT INTO images (description, url) VALUES('cat image', 'https://raw.githubusercontent.com/docker-training/catpics/master/26876813358_ee8b3fdc24_z.jpg');
+INSERT INTO images (description, url) VALUES('cat image', 'https://raw.githubusercontent.com/docker-training/catpics/master/30296286162_fe3e4f9a01_z.jpg');
+INSERT INTO images (description, url) VALUES('cat image', 'https://raw.githubusercontent.com/docker-training/catpics/master/37510597924_df820e0861_z.jpg');
+INSERT INTO images (description, url) VALUES('cat image', 'https://raw.githubusercontent.com/docker-training/catpics/master/38664606845_697ef09086_z.jpg');
+INSERT INTO images (description, url) VALUES('cat image', 'https://raw.githubusercontent.com/docker-training/catpics/master/39837778302_bc27f50808_z.jpg');
+INSERT INTO images (description, url) VALUES('cat image', 'https://raw.githubusercontent.com/docker-training/catpics/master/53610823_93e96536c2_o.png');
+INSERT INTO images (description, url) VALUES('cat image', 'https://raw.githubusercontent.com/docker-training/catpics/master/7956481290_ba196c0f39_z.jpg');
+INSERT INTO images (description, url) VALUES('cat image', 'https://raw.githubusercontent.com/docker-training/catpics/master/8613868269_c9d8137a3c_z.jpg');
+INSERT INTO images (description, url) VALUES('cat image', 'https://raw.githubusercontent.com/docker-training/catpics/master/9065891300_eb2d90fe7e_z.jpg');
 INSERT INTO images (description, url) VALUES('cat image', 'http://placekitten.com/g/400/400');
