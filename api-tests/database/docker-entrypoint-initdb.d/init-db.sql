@@ -24,4 +24,4 @@ INSERT INTO images (description, url) VALUES('cat image', 'https://raw.githubuse
 INSERT INTO images (description, url) VALUES('cat image', 'https://raw.githubusercontent.com/docker-training/catpics/master/7956481290_ba196c0f39_z.jpg');
 INSERT INTO images (description, url) VALUES('cat image', 'https://raw.githubusercontent.com/docker-training/catpics/master/8613868269_c9d8137a3c_z.jpg');
 INSERT INTO images (description, url) VALUES('cat image', 'https://raw.githubusercontent.com/docker-training/catpics/master/9065891300_eb2d90fe7e_z.jpg');
-INSERT INTO images (description, url) VALUES('cat image', 'http://placekitten.com/g/400/400');
+INSERT INTO images (description, url) VALUES('cat image', 'https://raw.githubusercontent.com/docker-training/catpics/master/39339304542_d2b5d5e8cb_z.jpg');
