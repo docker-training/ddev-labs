@@ -2,7 +2,7 @@ version: "3.1"
 
 services:
   database:
-    image: user/ddev_db:1.0
+    image: ${MY_DOCKER_ID}/ddev_db:1.0
     environment:
       POSTGRES_USER: gordonuser
       POSTGRES_DB: ddev
@@ -14,7 +14,7 @@ services:
       - postgres_password
 
   api:
-    image: user/ddev_api:1.0
+    image: ${MY_DOCKER_ID}/ddev_api:1.0
     ports:
       - "8080:8080"
       - "5005:5005"
@@ -30,7 +30,7 @@ services:
         retries: 3
 
   ui:
-    image: user/ddev_ui:1.0
+    image: ${MY_DOCKER_ID}/ddev_ui:1.0
     ports:
       - "3000:3000"
     networks:
