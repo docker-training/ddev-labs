@@ -38,7 +38,7 @@ services:
 
 secrets:
   postgres_password:
-    external: true
+    file: ./devsecrets/postgres_password
     
 networks:
   front-tier:
