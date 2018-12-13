@@ -38,6 +38,11 @@ spec:
           value: gordonuser
         - name: POSTGRES_DB
           value: ddev
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: postgres_password
         ports:
         - containerPort: 5432
 ---
