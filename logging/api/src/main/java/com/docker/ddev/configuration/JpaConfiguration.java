@@ -1,9 +1,10 @@
 package com.docker.ddev.configuration;
 
 import java.util.Properties;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.naming.NamingException;
 import javax.persistence.EntityManagerFactory;
@@ -49,20 +50,14 @@ public class JpaConfiguration {
 		DataSourceProperties dataSourceProperties = new DataSourceProperties();
 
 		// Set password to connect to postgres using Docker secrets.
-		try(BufferedReader br = new BufferedReader(new FileReader("/run/secrets/postgres_password"))) {
-			StringBuilder sb = new StringBuilder();
-			String line = br.readLine();
-
-			while (line != null) {
-				sb.append(line);
-				sb.append(System.lineSeparator());
-				line = br.readLine();
-			}
-			dataSourceProperties.setDataPassword(sb.toString());
+		try {
+			String secret = new String(Files.readAllBytes(Paths.get("/run/secrets/postgres_password")));
+			dataSourceProperties.setPassword(secret);
 		} catch (IOException e) {
-			System.err.println("Could not successfully load DB password file");
+			System.err.println("Could not successfully load DB password file. Setting default pass.");
+			dataSourceProperties.setPassword("gordonpass");
 		}
-		
+
 		return dataSourceProperties;
 	}
 

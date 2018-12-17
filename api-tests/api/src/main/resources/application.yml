@@ -32,7 +32,6 @@ datasource:
   ddev:
     url: jdbc:postgresql://database:5432/ddev
     username: gordonuser
-    password: gordonpass
     driverClassName: org.postgresql.Driver
     defaultSchema:
     maxConnections: 300
