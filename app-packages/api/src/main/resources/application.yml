@@ -1,0 +1,50 @@
+---
+server:
+  port: 8080
+  contextPath: /
+---
+spring:
+  profiles: local, default
+datasource:
+  ddev:
+    url: jdbc:h2:~/test
+    username: SA
+    password:
+    driverClassName: org.h2.Driver
+    defaultSchema:
+    maxPoolSize: 10
+    hibernate:
+      hbm2ddl.method: create-drop
+      show_sql: true
+      format_sql: true
+      dialect: org.hibernate.dialect.H2Dialect
+---
+spring:
+  profiles: postgres
+  devtools:
+    remote:
+      secret: secretkey
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
+datasource:
+  ddev:
+    url: jdbc:postgresql://database:5432/ddev
+    username: gordonuser
+    driverClassName: org.postgresql.Driver
+    defaultSchema:
+    maxConnections: 300
+    initialConnections: 20
+    maxAge: 30000
+    testOnBorrow: true
+    testWhileIdle:  true
+    timeBetweenEvictionRunsMillis: 60000
+    validationQuery: SELECT 1
+    minPoolSize: 6
+    maxPoolSize: 15
+    hibernate:
+      hbm2ddl.method: update
+      show_sql: true
+      format_sql: true
+      dialect: org.hibernate.dialect.PostgreSQLDialect
