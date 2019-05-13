@@ -1,3 +1,42 @@
+version: "3.6"
+services:
+  database:
+    environment:
+      POSTGRES_DB: ddev
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres-password
+    image: ${dockerID}/ddev_db
+    build:
+      context: database
+    restart: always
+    secrets:
+    - postgres-password
+    volumes:
+    - postgres-data:/var/lib/postgresql/data
+  api:
+    build:
+      context: api
+    image: ${dockerID}/ddev_api
+    secrets:
+    - source: postgres-password
+      target: postgres_password
+    environment:
+      SPRING_PROFILES_ACTIVE: postgres
+  ui:
+    build:
+      context: ui
+    image: ${dockerID}/ddev_ui
+    volumes:
+    - ./ui/src:/app/src
+    ports:
+    - "3000:3000"
+volumes:
+  postgres-data: {}
+secrets:
+  postgres-password:
+    file: devsecrets/postgres_password
+
+
+
 
 version: "3.1"
 
