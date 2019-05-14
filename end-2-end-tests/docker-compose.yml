@@ -1,47 +1,41 @@
-
-version: "3.1"
-
+version: "3.6"
 services:
   database:
-    build: 
-       context: database
-    image: ddev_db
     environment:
-      POSTGRES_USER: gordonuser
       POSTGRES_DB: ddev
-    ports:
-      - "5432:5432" 
-    networks:
-      - back-tier
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres-password
+    image: ${dockerID}/ddev_db
+    build:
+      context: database
+    restart: always
     secrets:
-      - postgres_password
-
+    - postgres-password
+    volumes:
+    - postgres-data:/var/lib/postgresql/data
+    networks:
+    - back-tier
   api:
     build:
-       context: api
-    image: ddev_api
-    ports:
-      - "8080:8080"
-      - "5005:5005"
-    networks:
-      - front-tier
-      - back-tier
+      context: api
+    image: ${dockerID}/ddev_api
     secrets:
-      - postgres_password
-
+    - source: postgres-password
+      target: postgres_password
+    environment:
+      SPRING_PROFILES_ACTIVE: postgres
+    networks:
+    - back-tier
+    - front-tier
   ui:
     build:
       context: ui
-    image: ddev_ui
+    image: ${dockerID}/ddev_ui
     ports:
-      - "3000:3000"
+    - "3000:3000"
     networks:
-      - front-tier
-
+    - front-tier
+volumes:
+  postgres-data: {}
 secrets:
-  postgres_password:
-    file: ./devsecrets/postgres_password
-    
-networks:
-  front-tier:
-  back-tier:
+  postgres-password:
+    file: devsecrets/postgres_password
