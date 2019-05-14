@@ -1,8 +1,8 @@
-version: '3.1'
+version: '3.6'
 services:
-    tests:
-        build: tests
-        networks:
-        - back-tier
+  tests:
+    build: tests
+    networks:
+    - back-tier
 networks:
     back-tier:
