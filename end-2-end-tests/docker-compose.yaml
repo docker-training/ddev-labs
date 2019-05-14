@@ -39,3 +39,6 @@ volumes:
 secrets:
   postgres-password:
     file: devsecrets/postgres_password
+networks:
+  back-tier:
+  front-tier:
