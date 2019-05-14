@@ -47,4 +47,4 @@ if [[ $RESULT -ne 0 ]]; then
 fi
 
 echo "Starting API..."
-java -jar /app/ddev-0.0.1-SNAPSHOT.jar --spring.profiles.active=postgres
+java -Djava.security.egd=file:/dev/./urandom -jar /app.jar
