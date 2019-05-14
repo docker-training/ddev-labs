@@ -21,6 +21,8 @@ services:
       target: postgres_password
     environment:
       SPRING_PROFILES_ACTIVE: postgres
+    ports:
+    - "8080:8080"
   ui:
     build:
       context: ui
