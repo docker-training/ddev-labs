@@ -1,6 +1,4 @@
-#!/bin/sh
-sudo apt-get update -y
-sudo apt-get install -y netcat
+#!/bin/bash
 
 echoerr() { if [[ $QUIET -ne 1 ]]; then echo "$@" 1>&2; fi }
 

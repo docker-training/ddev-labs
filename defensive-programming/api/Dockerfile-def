@@ -6,6 +6,7 @@ RUN mvn --batch-mode package
 RUN cp target/*jar target/app.jar
 
 FROM openjdk:8-jre
+RUN apt-get update -y && apt-get install -y netcat
 EXPOSE 8080
 VOLUME /tmp
 COPY --from=build target/app.jar app.jar
