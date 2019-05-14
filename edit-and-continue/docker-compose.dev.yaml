@@ -21,12 +21,12 @@ services:
       target: postgres_password
     environment:
       SPRING_PROFILES_ACTIVE: postgres
-    ports:
-    - "8080:8080"
   ui:
     build:
       context: ui
     image: ${dockerID}/ddev_ui
+    volumes:
+    - ./ui/src:/app/src
     ports:
     - "3000:3000"
 volumes:

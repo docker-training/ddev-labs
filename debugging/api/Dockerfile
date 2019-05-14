@@ -1,13 +1,12 @@
-FROM maven:latest AS appserver
-WORKDIR /usr/src/ddev
+FROM maven:3.5-jdk-8 AS build
 COPY pom.xml .
-RUN mvn -B -f pom.xml -s /usr/share/maven/ref/settings-docker.xml dependency:resolve
+RUN mvn --batch-mode dependency:resolve
 COPY . .
-RUN mvn -B -s /usr/share/maven/ref/settings-docker.xml package -DskipTests
+RUN mvn --batch-mode package
+RUN cp target/*jar target/app.jar
 
-FROM java:8-jdk-alpine
-RUN adduser -Dh /home/gordon gordon
-WORKDIR /app
-COPY --from=appserver /usr/src/ddev/target/ddev-0.0.1-SNAPSHOT.jar .
-ENTRYPOINT ["java", "-jar", "/app/ddev-0.0.1-SNAPSHOT.jar"]
-CMD ["--spring.profiles.active=postgres"]
+FROM openjdk:8-jre
+EXPOSE 8080
+VOLUME /tmp
+COPY --from=build target/app.jar app.jar
+ENTRYPOINT ["java","-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005","-jar","/app.jar"]

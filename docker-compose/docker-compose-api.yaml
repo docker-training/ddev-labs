@@ -15,20 +15,17 @@ services:
   api:
     build:
       context: api
+      dockerfile: Dockerfile-dev
     image: ${dockerID}/ddev_api
+    ports:
+      - "8080:8080"
+      - "5005:5005"
     secrets:
     - source: postgres-password
       target: postgres_password
     environment:
       SPRING_PROFILES_ACTIVE: postgres
-    ports:
-    - "8080:8080"
-  ui:
-    build:
-      context: ui
-    image: ${dockerID}/ddev_ui
-    ports:
-    - "3000:3000"
+
 volumes:
   postgres-data: {}
 secrets:
