@@ -3,13 +3,14 @@ services:
   database:
     environment:
       POSTGRES_DB: ddev
-      POSTGRES_PASSWORD_FILE: /run/secrets/postgres-password
+      POSTGRES_PASSWORD_FILE: /ddev/secrets/postgres-password
     image: ${dockerID}/ddev_db:1.0
     build:
       context: database
     restart: always
     secrets:
-    - postgres-password
+    - source: postgres-password
+      target: /ddev/secrets/postgres-password
     volumes:
     - postgres-data:/var/lib/postgresql/data
   api:
@@ -18,7 +19,7 @@ services:
     image: ${dockerID}/ddev_api:1.0
     secrets:
     - source: postgres-password
-      target: postgres_password
+      target: /ddev/secrets/postgres_password
     environment:
       SPRING_PROFILES_ACTIVE: postgres
     ports:
