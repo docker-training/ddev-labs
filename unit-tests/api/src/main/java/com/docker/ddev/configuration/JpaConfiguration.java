@@ -51,7 +51,7 @@ public class JpaConfiguration {
 
 		// Set password to connect to postgres using Docker secrets.
 		try {
-			String secret = new String(Files.readAllBytes(Paths.get("/run/secrets/postgres_password")));
+			String secret = new String(Files.readAllBytes(Paths.get("/ddev/secrets/postgres_password")));
 			dataSourceProperties.setPassword(secret);
 		} catch (IOException e) {
 			System.err.println("Could not successfully load DB password file. Setting default pass.");
