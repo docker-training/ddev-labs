@@ -4,7 +4,7 @@ services:
     environment:
       POSTGRES_DB: ddev
       POSTGRES_PASSWORD_FILE: /run/secrets/postgres-password
-    image: ${dockerID}/ddev_db
+    image: ${dockerID}/ddev_db:1.0
     build:
       context: database
     restart: always
@@ -15,7 +15,7 @@ services:
   api:
     build:
       context: api
-    image: ${dockerID}/ddev_api
+    image: ${dockerID}/ddev_api:1.0
     secrets:
     - source: postgres-password
       target: postgres_password
@@ -24,7 +24,7 @@ services:
   ui:
     build:
       context: ui
-    image: ${dockerID}/ddev_ui
+    image: ${dockerID}/ddev_ui:1.0
     volumes:
     - ./ui/src:/app/src
     ports:
