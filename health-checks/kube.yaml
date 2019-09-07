@@ -74,6 +74,9 @@ spec:
       containers:
       - name: api
         image: training/ddev_api:1.0
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: postgres
         livenessProbe:
           exec:
             command:
@@ -88,7 +91,7 @@ spec:
           name: debug-port
         volumeMounts:
         - name: db-secret-volume
-          mountPath: "/run/secrets"
+          mountPath: "/ddev/secrets"
           readOnly: true
       volumes:
       - name: db-secret-volume
